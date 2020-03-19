@@ -3,31 +3,37 @@
 
 <head>
   <meta charset="utf-8">
-  <title>D.Goldfine's Minesweeper 💣</title>
+  <title>D.Goldfine's MineSweeper(💣)</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="initGame()">
+<body onload="initGame()"" saveBestScore();">
+  <div class="container">
+    <div class="control-panel">
+      <h1>Daniel Goldfine's MineSweeper(💣)</h1>
+      <hr styl: color="black">
+      <div class="controllers">
+        <div class="face-icon">
+          <button class="face-button button" onclick="initGame()"></button>
+        </div>
+        <button class="button dufficulty" onclick="toggleDifficulty(this)">Medium</button>
+        <button class="button hint-button" onclick="getSafeCells()">Get Hint: 3</button>
+        <button class="button safe-click-button" onclick="indicateSafeCell()">Safe Click: 3</button>
+      </div>
+      <hr styl: color="black">
+      <h1 class="timer">00:00:00</h1>
+      <h3 class="best-score">Best Score:</h3>
+    </div>
+    <div class="table-container">
+      <h1 class="lives-display">3 Lives Left</h1>
+      <div class="table-wrapper">
+        <table class="table">
+          <tbody class="board"></tbody>
+        </table>
 
-<div>
-  <h1>Daniel Goldfine's Minesweeper Delivery 1 💣</h1>
-</div>
-
-<div>
-  <button onclick="initGame()">reset</button>
-  <button onclick="getSafeCells()">Get Hint</button>
-</div>
-
-
-
-  <table>
-    <tbody class="board"></tbody>
-  </table>
-
-
-
-
-
+      </div>
+    </div>
+  </div>
 
   <script src="js/util.js"></script>
   <script src="js/app.js"></script>

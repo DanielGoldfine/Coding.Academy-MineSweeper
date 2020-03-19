@@ -1,30 +1,126 @@
 body {
-    background-color: black;
+    background-color: #20332b;
 }
 
-h1 {
-    color: white;
+.container {
+    width: 90%;
+    margin: auto;
 }
 
-.cell {
-    background-color: white;
-    width: 50px;
-    height: 50px;
+.control-panel {
+    background-image: url("../img/camouflage.jpg");
+    height: 20em;
+    background-size: 100%;
+    align-items: center;
+}
+
+.controllers {
     text-align: center;
-    cursor: pointer;
 }
 
-.clicked {
-    background-color: aqua;
+.control-panel h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 3px black;
+}
+
+.timer {
+    margin-top: 20px;
+    margin-bottom: -10px;
+    font-size: 50px;
+    text-shadow: 2px 2px 3px black;
+}
+
+.control-panel h3 {
+    color: white;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+    text-shadow: 2px 2px 3px black;
+}
+
+.face-button {
+    margin-bottom: 10px;
+    font-size: 30px;
+    height: 200px;
+}
+
+.button {
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #00000067;
+    border: 1px solid white;
+    color: white;
+    height: 50px;
+    width: 150px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.button:hover {
+    background-color: #20332b;
+    border: 2px solid white;
+}
+
+.table-container {
+    background-image: url("../img/bg.jpg");
+    padding: 70px;
+    height: 470px;
+    background-size: 100%;
+}
+
+.lives-display {
+    color: #20332b;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    margin-top: -50px;
+    text-decoration: underline;
+}
+
+.table-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.table {
+    margin: auto;
+}
+
+.board {
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 .cell {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 800;
+    text-align: center;
+    background-color: #20332b;
+    border: 0.5px solid white;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px black;
+    transition: 0.3s;
+}
+
+.cell:hover {
+    background-color: #95b8be
+}
+
+.clicked {
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0);
+    border: 0.3px solid #20332b;
 }
 
 .safe {
-
-background-color: green;
-
+    background-color: #95b8be;
 }
