@@ -237,13 +237,17 @@ function resetTimer() {
 function resetElButtons() {
 
     var elSafeCellBtn = document.querySelector('.safe-click-button');
-    elSafeCellBtn.innerText = 'Safe Click: ' + safeClicksCount;
+    elSafeCellBtn.innerText = 'Safe Click: ' + gSafeClicksCount;
 
     var elHintBtn = document.querySelector('.hint-button');
-    elHintBtn.innerText = 'Get Hint: ' + hintsCount;
+    elHintBtn.innerText = 'Get Hint: ' + gHintsCount;
 
     var elFace = document.querySelector('.face-button');
     elFace.innerText = PLAYER;
+
+    var elPlaceMines = document.querySelector('.place-mines');
+    elPlaceMines.classList.remove('cant-click');
+    elPlaceMines.innerText = 'Place Mines';
 }
 
 function bestScoreRender() {

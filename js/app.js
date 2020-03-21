@@ -2,10 +2,12 @@
 
 var firstClick = false;
 var isHint = false;
-var isSafe = false;
-var hintsCount = 3;
-var safeClicksCount = 3;
+var gIsSafe = false;
+var gHintsCount = 3;
+var gSafeClicksCount = 3;
 var gLifeCount = 3;
+var gIsPlaceMines = false;
+var gPlaceMinesCount = 0;
 
 var gLevel = {
 	size: 8,
@@ -28,10 +30,11 @@ function initGame() {
 	firstClick = false;
 	gGame.isWin = false;
 	isHint = false;
-	isSafe = false;
-	hintsCount = 3;
+	gIsSafe = false;
+	gIsPlaceMines = false;
+	gHintsCount = 3;
 	gLifeCount = 3;
-	safeClicksCount = 3;
+	gSafeClicksCount = 3;
 	updateLives();
 	gBoard = createBoard(gLevel.size, gLevel.size);
 	renderBoard(gBoard);
@@ -42,6 +45,11 @@ function initGame() {
 
 function cellClicked(elCell, i, j) {
 
+	if (gIsPlaceMines) {
+		placeMines(elCell, i, j);
+		return;
+	}
+
 	if (!firstClick) {
 		gGame.isOn = true;
 		firstClick = true;
@@ -49,6 +57,7 @@ function cellClicked(elCell, i, j) {
 		audioClock.play();
 		fillBoard(gBoard, gLevel.mines, i, j);
 		setMinesNegsCount(gBoard);
+		document.querySelector('.place-mines').classList.add('cant-click');
 	}
 
 	if (isHint) {
@@ -111,12 +120,12 @@ function gameOver() {
 
 function getSafeCells() {
 
-	if (!gGame.isOn || isHint || isSafe) return;
+	if (!gGame.isOn || isHint || gIsSafe) return;
 
-	if (hintsCount === 0) return;
-	hintsCount--;
+	if (gHintsCount === 0) return;
+	gHintsCount--;
 	var elHintBtn = document.querySelector('.hint-button');
-	elHintBtn.innerText = 'Get Hint: ' + hintsCount;
+	elHintBtn.innerText = 'Get Hint: ' + gHintsCount;
 	isHint = true;
 
 	var safeCells = [];
@@ -175,14 +184,14 @@ function hideSafeCells(revealedSafeCells) {
 
 function indicateSafeCell() {
 
-	if (!gGame.isOn || isSafe || isHint) return;
+	if (!gGame.isOn || gIsSafe || isHint) return;
 
-	isSafe = true;
+	gIsSafe = true;
 
-	if (safeClicksCount === 0) return;
-	safeClicksCount--;
+	if (gSafeClicksCount === 0) return;
+	gSafeClicksCount--;
 	var elSafeCellBtn = document.querySelector('.safe-click-button');
-	elSafeCellBtn.innerText = 'Safe Click: ' + safeClicksCount;
+	elSafeCellBtn.innerText = 'Safe Click: ' + gSafeClicksCount;
 
 	var safeCells = [];
 
@@ -205,7 +214,7 @@ function indicateSafeCell() {
 
 function hideSafeCellIndication(elCell) {
 	elCell.classList.remove('safe');
-	isSafe = false;
+	gIsSafe = false;
 }
 
 function revealAllMines() {
@@ -220,4 +229,44 @@ function revealAllMines() {
 			}
 		}
 	}
+}
+
+
+
+function placeMinesToggle(elButton) {
+
+	if (gGame.isOn) return;
+
+	if (!gIsPlaceMines) {
+		gIsPlaceMines = true;
+		elButton.innerText = 'Start'
+		for (var i = 0; i < gBoard.length; i++) {
+			for (var j = 0; j < gBoard[i].length; j++) {
+				var cellClass = (`.cell-${i}-${j}`)
+				var elCell = document.querySelector(cellClass);
+				elCell.classList.add('clicked');
+			}
+		}
+		return;
+	}
+	if (gIsPlaceMines) {
+		if (gPlaceMinesCount === 0) return;
+		renderBoard(gBoard);
+		setMinesNegsCount(gBoard);
+		firstClick = true;
+		gGame.isOn = true;
+		gInervalTimer = setInterval(timeCounter, 10);
+		audioClock.play();
+		gIsPlaceMines = false;
+		elButton.innerText = 'Place Mines';
+		elButton.classList.add('cant-click');
+	}
+}
+
+function placeMines(elCell, i, j) {
+
+	gPlaceMinesCount++
+	gBoard[i][j].isMine = true;
+	elCell.innerText = MINE;
+
 }

@@ -66,6 +66,10 @@ body {
     border: 2px solid white;
 }
 
+.cant-click {
+    color: rgba(255, 255, 255, 0.411);
+}
+
 .table-container {
     background-image: url("../img/bg.jpg");
     padding: 70px;
