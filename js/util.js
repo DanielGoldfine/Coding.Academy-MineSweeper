@@ -4,10 +4,10 @@ document.addEventListener('contextmenu', function (preventContext) {
     preventContext.preventDefault();
 });
 
-var audioWin = new Audio('../sound/win.mp3');
-var audioLoose = new Audio('../sound/loose.mp3');
-var audioExplotion = new Audio('../sound/explosion.mp3');
-var audioClock = new Audio('../sound/clock.mp3');
+var audioWin = new Audio('sound/win.mp3');
+var audioLoose = new Audio('sound/loose.mp3');
+var audioExplotion = new Audio('sound/explosion.mp3');
+var audioClock = new Audio('sound/clock.mp3');
 
 const MINE = '💣';
 const EMPTY = '';
